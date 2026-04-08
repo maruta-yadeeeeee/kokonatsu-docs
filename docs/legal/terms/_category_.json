@@ -1,0 +1,10 @@
+{
+  "label": "利用規約",
+  "position": 1,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "legal/terms/overview"
+  }
+}
