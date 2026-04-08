@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkkokonatsu_doc=globalThis.webpackChunkkokonatsu_doc||[]).push([[3214],{3214(a,k,c){c.d(k,{createPacketServices:()=>e.$});var e=c(5893);c(2519)}}]);

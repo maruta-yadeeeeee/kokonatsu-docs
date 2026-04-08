@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkkokonatsu_doc=globalThis.webpackChunkkokonatsu_doc||[]).push([[1947],{1947(a,e,k){k.d(e,{createWardleyServices:()=>o.J});var o=k(2295);k(2519)}}]);

@@ -1,0 +1,1 @@
+(globalThis.webpackChunkkokonatsu_doc=globalThis.webpackChunkkokonatsu_doc||[]).push([[5741],{5741(){}}]);

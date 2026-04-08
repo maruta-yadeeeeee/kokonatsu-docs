@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkkokonatsu_doc=globalThis.webpackChunkkokonatsu_doc||[]).push([[1226],{1226(o,a,k){k.d(a,{createInfoServices:()=>s.v});var s=k(3954);k(2519)}}]);

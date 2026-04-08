@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkkokonatsu_doc=globalThis.webpackChunkkokonatsu_doc||[]).push([[2422],{2422(a,k,o){o.d(k,{createRadarServices:()=>s.f});var s=o(2480);o(2519)}}]);
