@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.9.2">
 <title data-rh="true">/cf コマンドリファレンス | Kokonatsu Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.kokonatsu.top/img/ocial-card.jpg"><meta data-rh="true" name="twitter:image" content="https://docs.kokonatsu.top/img/ocial-card.jpg"><meta data-rh="true" property="og:url" content="https://docs.kokonatsu.top/ここなつguardian/commands/cf"><meta data-rh="true" property="og:locale" content="ja"><meta data-rh="true" name="docusaurus_locale" content="ja"><meta data-rh="true" name="docsearch:language" content="ja"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="/cf コマンドリファレンス | Kokonatsu Docs"><meta data-rh="true" name="description" content="/cf（content filter）コマンド群は、コンテンツフィルタの機能トグルとサブ機能の個別設定を管理します。"><meta data-rh="true" property="og:description" content="/cf（content filter）コマンド群は、コンテンツフィルタの機能トグルとサブ機能の個別設定を管理します。"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.kokonatsu.top/ここなつguardian/commands/cf"><link data-rh="true" rel="alternate" href="https://docs.kokonatsu.top/ここなつguardian/commands/cf" hreflang="ja"><link data-rh="true" rel="alternate" href="https://docs.kokonatsu.top/ここなつguardian/commands/cf" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ここなつguardian","item":"https://docs.kokonatsu.top/ここなつguardian/"},{"@type":"ListItem","position":2,"name":"/cf","item":"https://docs.kokonatsu.top/ここなつguardian/commands/cf"}]}</script><link rel="stylesheet" href="/assets/css/styles.f3bf4ee9.css">
-<script src="/assets/js/runtime~main.2601a0b2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.d0d45a94.js" defer="defer"></script>
 <script src="/assets/js/main.fcdddadb.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -18,7 +18,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前提条件">前提条件<a href="#前提条件" class="hash-link" aria-label="前提条件 への直接リンク" title="前提条件 への直接リンク" translate="no">​</a></h2>
 <p><code>/cf</code> コマンドで設定した内容が実際に動作するには、以下の条件を満たす必要があります。</p>
 <ol>
-<li class=""><strong>Guardian 全体</strong>が有効であること（<code>/guardian toggle セキュリティ 大元 true</code>）</li>
+<li class=""><strong>Guardian 全体</strong>が有効であること（<code>/guardian toggle 全体 (Guardian) true</code>）</li>
 <li class="">**コンテンツフィルタ（大元）**が有効であること（<code>/cf toggle コンテンツフィルタ (大元) true</code>）</li>
 </ol>
 <p>大元が無効の場合、個別のサブ機能をオンにしても動作しません。<br>
@@ -42,7 +42,7 @@
 <p>サブ機能を有効にした際、前提条件が満たされていない場合は警告メッセージが表示されます。</p>
 <ul>
 <li class=""><code>⚠️ コンテンツフィルタ（大元）が無効です</code> → <code>/cf toggle コンテンツフィルタ (大元) true</code> を先に実行</li>
-<li class=""><code>⚠️ Guardian 全体が無効です</code> → <code>/guardian toggle セキュリティ 大元 true</code> を先に実行</li>
+<li class=""><code>⚠️ Guardian 全体が無効です</code> → <code>/guardian toggle 全体 (Guardian) true</code> を先に実行</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用例">使用例<a href="#使用例" class="hash-link" aria-label="使用例 への直接リンク" title="使用例 への直接リンク" translate="no">​</a></h3>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># コンテンツフィルタ全体を有効にする</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">/cf toggle コンテンツフィルタ (大元) true</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># リンクフィルタだけ有効にする</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">/cf toggle リンクフィルタ true</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># すべてのコンテンツフィルタ機能を一括有効化</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">/cf toggle 【一括】コンテンツ全機能変更 true</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># キーワードフィルタを無効にする</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">/cf toggle キーワードフィルタ false</span><br></span></code></pre></div></div>
