@@ -33,8 +33,8 @@ sidebar_label: Nuke 保護
 | `destruction_window_sec` | 10 | 検知ウィンドウ（秒）|
 
 ```
-/guardian set-nuke <threshold> <window>
-/guardian toggle Nuke保護
+/gs set-nuke <threshold> <window>
+/guardian toggle Nuke保護 (nuke_protection_enabled)
 ```
 
 ---
@@ -52,15 +52,15 @@ Nuke 保護が正しく機能するには、「監査ログを表示」権限が
 
 ---
 
-## Webhook バースト監視
+## Webhook スパム監視
 
 Webhook からの短時間大量送信も別途監視できます。
 
-**フラグ**: `webhook_burst_enabled`
+**フラグ**: `webhook_spam_enabled`
 
 | 設定 | デフォルト | 説明 |
 |---|---|---|
-| `webhook_burst_threshold` | 10 | 何件で検知するか |
-| `webhook_burst_window_sec` | 10 | 検知ウィンドウ（秒）|
+| `webhook_spam_threshold` | 10 | 何件で検知するか |
+| `webhook_spam_window_sec` | 10 | 検知ウィンドウ（秒）|
 
 検知時は対象 Webhook を削除します。

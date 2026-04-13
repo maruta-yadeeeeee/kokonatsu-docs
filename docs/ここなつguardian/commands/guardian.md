@@ -39,26 +39,26 @@ sidebar_label: /guardian
 Guardian の各セキュリティ機能を個別に有効・無効にします。  
 一部の機能は親子関係（依存関係）があります。詳しくは [機能依存関係](../features/dependencies.md) を参照してください。
 
-| 機能名（表示） | 対応フラグ | 説明 |
+| 機能名（メニュー表示） | 対応フラグ | 説明 |
 |---|---|---|
-| `【一括】全機能変更` | `all_enabled` | すべてのフラグを一括で ON/OFF する |
-| `セキュリティ 大元` | `enabled` | Guardian 全体の大元スイッチ。オフにすると全機能停止 |
-| `Anti-Raid` | `anti_raid_enabled` | 短時間に大量のメンバーが参加した場合に検知 |
-| `招待バースト検知` | `invite_spam_enabled` | 特定の招待コードから短時間に大量参加を検知 |
-| `グローバルレイド検知` | `global_raid_enabled` | 同一ユーザーが複数サーバーに短時間で参加を検知 |
-| `クロスサーバー検知` | `cross_server_enabled` | 複数サーバー間でスパムメッセージのハッシュを照合 |
-| `アバターなしキック` | `kick_no_avatar` | アバター未設定のアカウントを自動キック |
-| `Nuke保護` | `nuke_protection_enabled` | チャンネル・ロール大量削除等の破壊行為を検知 |
-| `コンテンツフィルタ` | `content_filter_enabled` | メッセージ内容の検査（大元スイッチ） |
-| `招待リンクフィルタ` | `invite_filter_enabled` | Discord 招待リンクの送信をブロック |
-| `スパム検知 (大元)` | `spam_detection_enabled` | スパム検知全体の大元スイッチ |
-| `スパム検知 (単独)` | `solo_spam_enabled` | 1人による高速連投を検知 |
-| `スパム検知 (協調)` | `coordinated_spam_enabled` | 複数人による類似メッセージの同時投稿を検知 |
-| `リアクションスパム` | `reaction_spam_enabled` | 大量リアクション付与を検知 |
-| `Webhookスパム` | `webhook_burst_enabled` | Webhook からの大量送信を検知 |
-| `未認証ボットブロック` | `block_unverified_bots` | ホワイトリスト外の未認証ボットの参加をブロック |
-| `ボットスキャン` | `scan_bot_messages` | ボットのメッセージも各 Detector で検査 |
-| `Webhookスキャン` | `scan_webhook_messages` | Webhook のメッセージも各 Detector で検査 |
+| 全体 (Guardian) | `enabled` | すべての機能の大元スイッチ |
+| 【一括】全機能変更 | `all_enabled` | すべてのフラグを一括で ON/OFF する |
+| Anti-Raid | `anti_raid_enabled` | 短時間に大量のメンバーが参加した場合に検知 |
+| 招待バースト検知 | `invite_burst_enabled` | 特定の招待コードから短時間に大量参加を検知 |
+| グローバルレイド検知 | `global_raid_enabled` | 同一ユーザーが複数サーバーに短時間で参加を検知 |
+| クロスサーバー検知 | `cross_server_enabled` | 複数サーバー間でスパムメッセージのハッシュを照合 |
+| アバターなしキック | `kick_no_avatar` | アバター未設定のアカウントを自動キック |
+| Nuke保護 | `nuke_protection_enabled` | チャンネル・ロール大量削除等の破壊行為を検知 |
+| 招待リンクフィルタ | `invite_filter_enabled` | Discord 招待リンクの送信をブロック |
+| スパム検知 (大元) | `spam_detection_enabled` | スパム検知全体の大元スイッチ |
+| スパム検知 (単独) | `solo_spam_enabled` | 1人による高速連投を検知 |
+| スパム検知 (協調) | `coordinated_spam_enabled` | 複数人による類似メッセージの同時投稿を検知 |
+| リアクションスパム | `reaction_spam_enabled` | 大量リアクション付与を検知 |
+| Webhook スパム監視 | `webhook_spam_enabled` | Webhook からの大量送信を検知 |
+| ボットスパム監視 | `bot_spam_enabled` | ボットからの大量送信を検知 |
+| 未認証ボットブロック | `block_unverified_bots` | ホワイトリスト外の未認証ボットの参加をブロック |
+| ボットスキャン | `scan_bot_messages` | ボットのメッセージも各 Detector で検査 |
+| Webhook スキャン | `scan_webhook_messages` | Webhook のメッセージも各 Detector で検査 |
 
 全機能を一括でオン/オフする場合:
 
@@ -90,25 +90,28 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 ## 閾値・設定コマンド
 
 各検知機能の閾値（何回で検知するか）を個別に設定します。  
-**すべてのコマンドは引数なしで実行すると現在の設定値を表示します。**
+**これらのコマンドはすべて `/gs` グループに属します。**  
+すべてのコマンドは引数なしで実行すると現在の設定値を表示します。
 
 | コマンド | 説明 | 主な引数 |
 |---|---|---|
-| `/guardian set-raid` | Anti-Raid 閾値設定（N人がM秒以内に参加で検知） | `threshold`（人数）, `window`（秒）|
-| `/guardian set-invite` | 招待バースト検知 閾値設定（特定招待コードからの大量参加） | `threshold`, `window` |
-| `/guardian set-spam` | 協調スパム閾値設定（複数人の類似メッセージ検知） | `cluster_size`, `window`, `similarity` |
-| `/guardian set-solo-spam` | 単独スパム閾値設定（1人の高速連投検知） | `threshold`, `window` |
-| `/guardian set-reaction` | リアクションスパム閾値設定 | `threshold`, `window` |
-| `/guardian set-webhook-spam` | Webhook スパム閾値設定 | `threshold`, `window` |
-| `/guardian set-bot-spam` | ボットスパム監視閾値設定 | `threshold`, `window` |
-| `/guardian set-nuke` | Nuke 保護閾値設定（チャンネル/ロール大量削除の検知） | `threshold`, `window` |
-| `/guardian set-screening` | 最低アカウント年齢設定（新規アカウントの自動キック） | `min_age_hours` |
+| `/gs set-raid` | Anti-Raid 閾値設定（N人がM秒以内に参加で検知） | `threshold`（人数）, `window`（秒）|
+| `/gs set-invite` | 招待バースト検知 閾値設定（特定招待コードからの大量参加） | `threshold`, `window` |
+| `/gs set-spam` | 協調スパム閾値設定（複数人の類似メッセージ検知） | `cluster_size`, `window`, `similarity` |
+| `/gs set-solo-spam` | 単独スパム閾値設定（1人の高速連投検知） | `threshold`, `window` |
+| `/gs set-reaction` | リアクションスパム閾値設定 | `threshold`, `window` |
+| `/gs set-webhook-spam` | Webhook スパム閾値設定 | `threshold`, `window` |
+| `/gs set-bot-spam` | ボットスパム監視閾値設定 | `threshold`, `window` |
+| `/gs set-nuke` | Nuke 保護閾値設定（チャンネル/ロール大量削除の検知） | `threshold`, `window` |
+| `/gs set-screening` | 最低アカウント年齢設定（新規アカウントの自動キック） | `min_age_hours` |
 
 ---
 
 ## コンテンツフィルタ 詳細設定
 
-### `/guardian set-content`
+**これらのコマンドは `/gs` または `/cf` グループに属します。**
+
+### `/gs set-content`
 
 メッセージの上限値を設定します。
 
@@ -119,7 +122,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 | `max_mentions` | 10 | 1メッセージあたりの最大メンション数 |
 | `max_attachments` | 5 | 1メッセージあたりの最大添付ファイル数 |
 
-### `/guardian content-subflags`
+### `/cf content-subflags`
 
 コンテンツフィルタのどのチェックを有効にするかを個別に設定します。
 
@@ -134,7 +137,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 
 引数なしで現在値を表示します。
 
-### `/guardian set-attachment`
+### `/gs set-attachment`
 
 添付ファイルの詳細フィルタを設定します。
 
@@ -144,7 +147,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 | `block_ext` | ブロックする拡張子をカンマ区切りで指定（例: `exe,bat,sh`）|
 | `allow_ext` | 許可する拡張子のみをカンマ区切りで指定（例: `png,jpg,gif`）。設定すると他はすべて拒否。空文字で解除 |
 
-### `/guardian set-link`
+### `/gs set-link`
 
 リンクフィルタの詳細設定です。
 
@@ -156,7 +159,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 
 引数なしで現在の設定（全リンクブロックモードと許可ドメイン一覧）を表示します。
 
-### `/guardian set-keyword`
+### `/gs set-keyword`
 
 キーワードマッチングの詳細設定です。
 
@@ -169,9 +172,9 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 
 ## アクションモード設定
 
-各モジュールの違反時アクションは専用コマンドで個別に設定します。
+各モジュールの違反時アクションは `/gs` の専用コマンドで個別に設定します。
 
-### `/guardian content-action [check_type] [action]`
+### `/gs content-action [check_type] [action]`
 
 コンテンツフィルタ違反時のアクションモードを設定します。
 
@@ -184,7 +187,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 | `リンク違反` | `cf_action_links` |
 | `キーワード違反` | `cf_action_keywords` |
 
-### `/guardian spam-action [check_type] [action]`
+### `/gs spam-action [check_type] [action]`
 
 スパム検知違反時のアクションモードを設定します。
 
@@ -192,10 +195,6 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 |---|---|
 | `単独スパム` | `spam_action_solo` |
 | `協調スパム（クラスター）` | `spam_action_cluster` |
-
-### `/guardian invite-action [action]`
-
-招待リンクフィルタ違反時のアクションモードを設定します。
 
 **action の共通選択肢（全コマンド共通）：**
 
@@ -215,13 +214,13 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 ```
 /guardian whitelist-add [user] [role] [bot_id]
 /guardian whitelist-remove [user] [role] [bot_id]
-/guardian whitelist-list
+/guardian whitelist-list [type]
 ```
 
 ホワイトリストに登録されたユーザー・ロール・ボットはすべての検知から除外されます。
 
 ```
-/guardian trusted-role [action] [role]
+/gs trusted-role [action] [role]
 ```
 
 信頼済みロールを管理します。`action` は `add` または `remove` を選択。引数なしで一覧表示。  
@@ -241,7 +240,7 @@ Webhook メッセージのスキャンを ON/OFF します。違反時は Webhoo
 チャンネルごとにコンテンツフィルタ設定を上書きできます。
 
 ```
-/guardian channel-override [channel] [max_lines] [max_chars] [max_mentions] [max_attachments] [content_filter] [action] [clear]
+/gs channel-override [channel] [max_lines] [max_chars] [max_mentions] [max_attachments] [content_filter] [action] [clear]
 ```
 
 | 引数 | 説明 |

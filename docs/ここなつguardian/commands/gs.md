@@ -91,6 +91,40 @@ sidebar_label: /gs
 
 ---
 
+## 閾値・検知設定
+
+各検知機能の閾値（何回で検知するか）を個別に設定します。  
+**すべてのコマンドは引数なしで実行すると現在の設定値を表示します。**
+
+| コマンド | 説明 | 主な引数 |
+|---|---|---|
+| `/gs set-raid` | Anti-Raid 閾値設定 | `threshold`（人数）, `window`（秒）|
+| `/gs set-invite` | 招待バースト検知 閾値設定 | `threshold`, `window` |
+| `/gs set-spam` | 協調スパム閾値設定 | `cluster_size`, `window`, `similarity` |
+| `/gs set-solo-spam` | 単独スパム閾値設定 | `threshold`, `window` |
+| `/gs set-reaction` | リアクションスパム閾値設定 | `threshold`, `window` |
+| `/gs set-webhook-spam` | Webhook スパム閾値設定 | `threshold`, `window` |
+| `/gs set-bot-spam` | ボットスパム監視閾値設定 | `threshold`, `window` |
+| `/gs set-nuke` | Nuke 保護閾値設定 | `threshold`, `window` |
+| `/gs set-screening` | 最低アカウント年齢設定 | `min_age_hours` |
+
+---
+
+## コンテンツフィルタ詳細設定
+
+| コマンド | 説明 |
+|---|---|
+| `/gs set-content` | メッセージの上限値（行数・文字数・メンション・添付数）を設定 |
+| `/gs set-attachment` | 添付ファイルのサイズ・拡張子フィルタを設定 |
+| `/gs set-link` | リンクフィルタの許可ドメイン管理 |
+| `/gs set-keyword` | キーワードフィルタのマッチング設定 |
+| `/gs content-action` | コンテンツフィルタ違反時のアクションモードを設定 |
+| `/gs spam-action` | スパム検知違反時のアクションモードを設定 |
+| `/gs trusted-role` | 信頼済みロールを管理（上限バイパス）|
+| `/gs channel-override` | チャンネル別コンテンツフィルタ設定を上書き |
+
+---
+
 ## ユーザーポイントの確認
 
 個別ユーザーの現在のポイントを確認する専用コマンドは現時点では存在しません。  
@@ -104,7 +138,7 @@ sidebar_label: /gs
 
 | グループ | 説明 | リファレンス |
 |---|---|---|
-| `/guardian` | セキュリティ全体の設定・トグル・閾値 | [/guardian コマンドリファレンス](guardian.md) |
+| `/guardian` | セキュリティ全体のトグル・セットアップ | [/guardian コマンドリファレンス](guardian.md) |
 | `/cf` | コンテンツフィルタの個別トグル | [/cf コマンドリファレンス](cf.md) |
 | `/kb` | サーバーのバックアップ・復元 | [/kb コマンドリファレンス](kb.md) |
 

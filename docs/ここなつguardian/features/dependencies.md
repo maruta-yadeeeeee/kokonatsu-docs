@@ -26,7 +26,7 @@ enabled = false → Guardian は何も動きません
 最初に必ず以下を実行してください:
 
 ```
-/guardian toggle セキュリティ 大元 true
+/guardian toggle 全体 (Guardian) (enabled) true
 ```
 
 ### 大原則 2: 「大元スイッチ」と「個別スイッチ」の2段構造
@@ -70,13 +70,14 @@ Anti-Raid と コンテンツフィルタ は互いに無関係です。
 | **協調スパムを検知したい** | `enabled` → `spam_detection_enabled` → `coordinated_spam_enabled` | `/guardian toggle` |
 | **クロスサーバースパム検知** | `enabled` → `spam_detection_enabled` → `coordinated_spam_enabled` → `cross_server_enabled` | `/guardian toggle` |
 | **大量参加を検知したい** | `enabled` → `anti_raid_enabled` | `/guardian toggle` |
-| **招待バースト検知** | `enabled` → `invite_spam_enabled` | `/guardian toggle` |
+| **招待バースト検知** | `enabled` → `invite_burst_enabled` | `/guardian toggle` |
 | **グローバルレイド検知** | `enabled` → `global_raid_enabled` | `/guardian toggle` |
 | **アバターなしキック** | `enabled` → `kick_no_avatar` | `/guardian toggle` |
 | **未認証Botブロック** | `enabled` → `block_unverified_bots` | `/guardian toggle` |
 | **Nuke保護** | `enabled` → `nuke_protection_enabled` | `/guardian toggle` |
 | **リアクションスパム検知** | `enabled` → `reaction_spam_enabled` | `/guardian toggle` |
-| **Webhookバースト検知** | `enabled` → `webhook_burst_enabled` | `/guardian toggle` |
+| **Webhookスパム検知** | `enabled` → `webhook_spam_enabled` | `/guardian toggle` |
+| **ボットスパム検知** | `enabled` → `bot_spam_enabled` | `/guardian toggle` |
 | **Botメッセージもスキャン** | `enabled` → `scan_bot_messages` + 各 Detector が有効 | `/guardian toggle` |
 | **Webhookメッセージもスキャン** | `enabled` → `scan_webhook_messages` + 各 Detector が有効 | `/guardian toggle` |
 
@@ -85,7 +86,7 @@ Anti-Raid と コンテンツフィルタ は互いに無関係です。
 **Q. キーワードフィルタをオンにしたのに、NGワードが検知されない**
 
 → 以下の3つすべてがオンか確認してください:
-1. `/guardian toggle セキュリティ 大元 true`（Guardian 全体）
+1. `/guardian toggle 全体 (Guardian) true`（Guardian 全体）
 2. `/cf toggle コンテンツフィルタ (大元) true`（コンテンツフィルタの大元）
 3. `/cf toggle キーワードフィルタ true`（キーワードフィルタ個別）
 
@@ -97,7 +98,7 @@ Anti-Raid と コンテンツフィルタ は互いに無関係です。
 **Q. スパム検知をオンにしたのに、連投が検知されない**
 
 → スパム検知は3段構造です:
-1. `/guardian toggle セキュリティ 大元 true`
+1. `/guardian toggle 全体 (Guardian) true`
 2. `/guardian toggle スパム検知 (大元) true`
 3. `/guardian toggle スパム検知 (単独) true` または `/guardian toggle スパム検知 (協調) true`
 
@@ -274,7 +275,8 @@ spam_detection_enabled = false → スパム検知はすべて無効
 |---|---|
 | `nuke_protection_enabled` | `enabled` + `nuke_protection_enabled` |
 | `reaction_spam_enabled` | `enabled` + `reaction_spam_enabled` |
-| `webhook_burst_enabled` | `enabled` + `webhook_burst_enabled` |
+| `webhook_spam_enabled` | `enabled` + `webhook_spam_enabled` |
+| `bot_spam_enabled` | `enabled` + `bot_spam_enabled` |
 
 ### 5.3 Bot / Webhook スキャン
 
@@ -289,7 +291,7 @@ spam_detection_enabled = false → スパム検知はすべて無効
 ### 6.1 すべての機能は `enabled = true` が前提
 
 - `enabled = false` にすると、スパムもコンテンツも招待リンクも復元もすべて“停止”します。
-- まず真っ先に `/guardian toggle セキュリティ 大元 true` を行ってください。
+- まず真っ先に `/guardian toggle 全体 (Guardian) true` を行ってください。
 
 ### 6.2 `content_filter_enabled` はコンテンツフィルタの大元
 
@@ -309,8 +311,8 @@ spam_detection_enabled = false → スパム検知はすべて無効
 
 | 機能 | 必要フラグ（すべて必要） | 設定コマンド | 説明 |
 |---|---|---|---|
-| セキュリティ大元 | `enabled` | `/guardian toggle セキュリティ 大元` | Guardian 全機能の大元スイッチ |
-| コンテンツフィルタ | `enabled` + `content_filter_enabled` | `/guardian toggle コンテンツフィルタ` または `/cf toggle コンテンツフィルタ (大元)` | メッセージ内容検査の大元 |
+| セキュリティ大元 | `enabled` | `/guardian toggle 全体 (Guardian)` | Guardian 全機能の大元スイッチ |
+| コンテンツフィルタ | `enabled` + `content_filter_enabled` | `/cf toggle コンテンツフィルタ (大元)` | メッセージ内容検査の大元 |
 | 行数チェック | `enabled` + `content_filter_enabled` + `cf_check_lines` | `/cf toggle 行数チェック` | メッセージの行数を上限で制限 |
 | 文字数チェック | `enabled` + `content_filter_enabled` + `cf_check_chars` | `/cf toggle 文字数チェック` | メッセージの文字数を上限で制限 |
 | メンションチェック | `enabled` + `content_filter_enabled` + `cf_check_mentions` | `/cf toggle メンション数チェック` | メンション数を上限で制限 |
@@ -323,15 +325,16 @@ spam_detection_enabled = false → スパム検知はすべて無効
 | 協調スパム | `enabled` + `spam_detection_enabled` + `coordinated_spam_enabled` | `/guardian toggle スパム検知 (協調)` | 複数人による類似メッセージを検知 |
 | クロスサーバー相関 | 上記 + `cross_server_enabled` | `/guardian toggle クロスサーバー検知` | 複数サーバー間のスパムハッシュ照合 |
 | Anti-Raid | `enabled` + `anti_raid_enabled` | `/guardian toggle Anti-Raid` | 短時間の大量参加を検知 |
-| 招待バースト | `enabled` + `invite_spam_enabled` | `/guardian toggle 招待バースト検知` | 特定招待コードからの大量参加を検知 |
+| 招待バースト | `enabled` + `invite_burst_enabled` | `/guardian toggle 招待バースト検知` | 特定招待コードからの大量参加を検知 |
 | グローバルレイド | `enabled` + `global_raid_enabled` | `/guardian toggle グローバルレイド検知` | 同一ユーザーの複数サーバー参加を検知 |
 | アバターなしキック | `enabled` + `kick_no_avatar` | `/guardian toggle アバターなしキック` | アバター未設定アカウントを自動キック |
 | 未認証Botブロック | `enabled` + `block_unverified_bots` | `/guardian toggle 未認証ボットブロック` | ホワイトリスト外 Bot をブロック |
 | Nuke 保護 | `enabled` + `nuke_protection_enabled` | `/guardian toggle Nuke保護` | 大量削除等の破壊行為を検知 |
 | リアクションスパム | `enabled` + `reaction_spam_enabled` | `/guardian toggle リアクションスパム` | 大量リアクションを検知 |
-| Webhookバースト | `enabled` + `webhook_burst_enabled` | `/guardian toggle Webhookスパム` | Webhook の大量送信を検知 |
+| Webhookスパム監視 | `enabled` + `webhook_spam_enabled` | `/guardian toggle Webhook スパム監視` | Webhook の大量送信を検知 |
+| ボットスパム監視 | `enabled` + `bot_spam_enabled` | `/guardian toggle ボットスパム監視` | ボットの大量送信を検知 |
 | Botメッセージスキャン | `enabled` + `scan_bot_messages` | `/guardian toggle ボットスキャン` | Bot メッセージを Detector に通す |
-| Webhookメッセージスキャン | `enabled` + `scan_webhook_messages` | `/guardian toggle Webhookスキャン` | Webhook メッセージを Detector に通す |
+| Webhookメッセージスキャン | `enabled` + `scan_webhook_messages` | `/guardian toggle Webhook スキャン` | Webhook メッセージを Detector に通す |
 
 ---
 
@@ -339,7 +342,7 @@ spam_detection_enabled = false → スパム検知はすべて無効
 
 | ミス | 結果 | 解決方法 |
 |---|---|---|
-| `enabled` がオフ | **すべて**の機能が停止 | `/guardian toggle セキュリティ 大元 true` |
+| `enabled` がオフ | **すべて**の機能が停止 | `/guardian toggle 全体 (Guardian) true` |
 | `content_filter_enabled` がオフで `cf_check_*` をオン | コンテンツフィルタが動かない | `/cf toggle コンテンツフィルタ (大元) true` |
 | `spam_detection_enabled` がオフで `solo_spam_enabled` をオン | スパム検知が動かない | `/guardian toggle スパム検知 (大元) true` |
 | `spam_detection_enabled` だけオンで子が両方オフ | スパム検知が何も動かない | `/guardian toggle スパム検知 (単独) true` |
@@ -425,8 +428,10 @@ enabled  ━━ すべての機能の大元スイッチ
 │   │     └─ destruction_threshold / destruction_window_sec
 │   ├─ reaction_spam_enabled   → リアクションスパム
 │   │     └─ reaction_burst_threshold / reaction_burst_window_sec
-│   └─ webhook_burst_enabled   → Webhook バースト監視
-│         └─ webhook_burst_threshold / webhook_burst_window_sec
+│   ├─ webhook_spam_enabled    → Webhook スパム監視
+│   │     └─ webhook_spam_threshold / webhook_spam_window_sec
+│   └─ bot_spam_enabled        → ボットスパム監視
+│         └─ bot_spam_threshold / bot_spam_window_sec
 │
 └──【Bot・Webhook スキャン】（enabled が前提）─────────────────────
     ├─ scan_bot_messages      → Bot メッセージを Detector パイプラインに通す
@@ -458,7 +463,8 @@ enabled  ━━ すべての機能の大元スイッチ
 | **Honeypot** | `enabled` + `honeypot_channel_id` 設定 | |
 | **Nuke 保護** | `enabled` + `nuke_protection_enabled` | |
 | **リアクションスパム** | `enabled` + `reaction_spam_enabled` | |
-| **Webhook バースト** | `enabled` + `webhook_burst_enabled` | |
+| **Webhook スパム監視** | `enabled` + `webhook_spam_enabled` | |
+| **ボットスパム監視** | `enabled` + `bot_spam_enabled` | |
 | **Bot メッセージスキャン** | `enabled` + `scan_bot_messages` | Detector が別途必要 |
 | **Webhook メッセージスキャン** | `enabled` + `scan_webhook_messages` | Detector が別途必要 |
 
@@ -648,7 +654,8 @@ min_account_age_hours      = 24
 # Nuke・その他
 nuke_protection_enabled    = true
 reaction_spam_enabled      = true
-webhook_burst_enabled      = true
+webhook_spam_enabled       = true
+bot_spam_enabled           = true
 ```
 
 ---

@@ -16,7 +16,7 @@ sidebar_label: /cf
 
 `/cf` コマンドで設定した内容が実際に動作するには、以下の条件を満たす必要があります。
 
-1. **Guardian 全体**が有効であること（`/guardian toggle セキュリティ 大元 true`）
+1. **Guardian 全体**が有効であること（`/guardian toggle 全体 (Guardian) true`）
 2. **コンテンツフィルタ（大元）**が有効であること（`/cf toggle コンテンツフィルタ (大元) true`）
 
 大元が無効の場合、個別のサブ機能をオンにしても動作しません。  
@@ -69,7 +69,7 @@ sidebar_label: /cf
 サブ機能を有効にした際、前提条件が満たされていない場合は警告メッセージが表示されます。
 
 - `⚠️ コンテンツフィルタ（大元）が無効です` → `/cf toggle コンテンツフィルタ (大元) true` を先に実行
-- `⚠️ Guardian 全体が無効です` → `/guardian toggle セキュリティ 大元 true` を先に実行
+- `⚠️ Guardian 全体が無効です` → `/guardian toggle 全体 (Guardian) true` を先に実行
 
 ### 使用例
 

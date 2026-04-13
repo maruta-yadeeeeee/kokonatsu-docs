@@ -71,7 +71,7 @@ sidebar_label: コンテンツフィルタ
 
 ## trusted_role_ids（信頼済みロール）
 
-`/guardian trusted-roles-add <ロールID>` で登録したロールのユーザーは、以下のチェックをバイパスします。
+`/gs trusted-role add <ロール>` で登録したロールのユーザーは、以下のチェックをバイパスします。
 
 - ✅ バイパス: 行数・文字数・メンション・添付ファイルの上限チェック
 - ❌ バイパス不可: リンクフィルタ・キーワードフィルタ（常に適用）
@@ -83,13 +83,13 @@ sidebar_label: コンテンツフィルタ
 特定のチャンネルだけ設定を上書きできます。
 
 ```
-/guardian channel-override <チャンネル> <設定キー> <値>
+/gs channel-override <チャンネル> <設定キー> <値>
 ```
 
 例: `#general` チャンネルのみ `max_message_lines` を 50 に設定する
 
 ```
-/guardian channel-override #general max_message_lines 50
+/gs channel-override #general max_message_lines 50
 ```
 
 ---
@@ -97,8 +97,8 @@ sidebar_label: コンテンツフィルタ
 ## 設定コマンド
 
 ```
-/guardian toggle コンテンツフィルタ        # content_filter_enabled ON/OFF
-/guardian set-content-limit <行数> <文字数> <メンション数> <添付数>
+/cf toggle コンテンツフィルタ (大元) (content_filter_enabled)
+/gs set-content <行数> <文字数> <メンション数> <添付数>
 /gs blacklist-keyword <add|remove|list> [pattern] [is_regex]
 /gs blacklist-domain <add|remove|list> [domain]
 ```

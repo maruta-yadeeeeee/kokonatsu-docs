@@ -70,10 +70,10 @@ sidebar_label: スパム検知
 ## 設定コマンド
 
 ```
-/guardian toggle スパム検知 (大元)      # spam_detection_enabled
-/guardian toggle スパム検知 (単独)      # solo_spam_enabled
-/guardian toggle スパム検知 (協調)      # coordinated_spam_enabled
-/guardian toggle クロスサーバー検知     # cross_server_enabled
-/guardian set-spam <cluster_size> <window> <similarity>
-/guardian set-solo-spam <threshold> <window>
+/guardian toggle スパム検知 (大元) (spam_detection_enabled)
+/guardian toggle スパム検知 (単独) (solo_spam_enabled)
+/guardian toggle スパム検知 (協調) (coordinated_spam_enabled)
+/guardian toggle クロスサーバー検知 (cross_server_enabled)
+/gs set-spam <cluster_size> <window> <similarity>
+/gs set-solo-spam <threshold> <window>
 ```

@@ -47,6 +47,5 @@ sidebar_label: 招待リンクフィルタ
 ## 設定コマンド
 
 ```
-/guardian toggle 招待リンクフィルタ    # invite_filter_enabled ON/OFF
-/guardian set-action 招待リンク <モード>
+/guardian toggle 招待リンクフィルタ (invite_filter_enabled)
 ```

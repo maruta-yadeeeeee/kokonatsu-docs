@@ -29,8 +29,8 @@ sidebar_label: レイド・参加者対策
 自動キックは行いません（手動対応を推奨）。
 
 ```
-/guardian set-raid <threshold> <window>
-/guardian toggle Anti-Raid
+/gs set-raid <threshold> <window>
+/guardian toggle Anti-Raid (anti_raid_enabled)
 ```
 
 ---
@@ -53,7 +53,7 @@ sidebar_label: レイド・参加者対策
 :::
 
 ```
-/guardian toggle グローバルレイド検知
+/guardian toggle グローバルレイド検知 (global_raid_enabled)
 ```
 
 ---
@@ -75,8 +75,8 @@ sidebar_label: レイド・参加者対策
 :::
 
 ```
-/guardian set-invite <threshold> <window>
-/guardian toggle 招待バースト検知
+/gs set-invite <threshold> <window>
+/guardian toggle 招待バースト検知 (invite_burst_enabled)
 ```
 
 ---
@@ -88,7 +88,7 @@ sidebar_label: レイド・参加者対策
 設定した時間よりも新しいアカウントの参加を自動キックします。
 
 ```
-/guardian set-screening <min_age_hours>
+/gs set-screening <min_age_hours>
 ```
 
 ---
@@ -100,7 +100,7 @@ sidebar_label: レイド・参加者対策
 アバターが設定されていないアカウントの参加を自動キックします。
 
 ```
-/guardian toggle アバターなしキック
+/guardian toggle アバターなしキック (kick_no_avatar)
 ```
 
 ---
@@ -112,7 +112,7 @@ sidebar_label: レイド・参加者対策
 `allowed_bot_ids` に登録されていない Bot の参加を自動キックします。
 
 ```
-/guardian toggle 未認証ボットブロック
+/guardian toggle 未認証ボットブロック (block_unverified_bots)
 /guardian whitelist-add <ID>   # Bot を許可リストに追加
 /guardian whitelist-remove <ID>
 ```
